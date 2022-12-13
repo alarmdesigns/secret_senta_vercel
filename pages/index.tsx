@@ -1,6 +1,6 @@
 import { ChakraProvider,Heading, Text, Box, Center, Select, Stack, Button, Link } from '@chakra-ui/react'
 import React, { useState } from 'react';
-import { Props, retrieveData } from './shared';
+import { Props, retrieveData } from '../shared';
 import NextLink from 'next/link'
 
 export default function Movies({ users }: Props) {
@@ -27,14 +27,15 @@ export default function Movies({ users }: Props) {
                 </Heading>
                     <h1>Da hu ka?</h1>
                     <Select 
+                    
                         variant='flushed'
                         placeholder='Hanapin ang sarili...'
                         onChange={(event) => {
                             setUser(event?.target?.value);
                         }} 
                     >
-                        {users && users.sort(function(a, b){return a.order-b.order}).map((user) => (
-                            <option value={user.order}>{user.name}</option>
+                        {users && users.map((user) => (
+                            <option key={user.order} value={user.order}>{user.name}</option>
                         ))}
                     </Select>
 

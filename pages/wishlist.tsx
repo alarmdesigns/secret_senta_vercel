@@ -1,6 +1,6 @@
 import { ChakraProvider,TableContainer, Box, Center, Thead, Table, Tr, Th, Td, Tbody, Tfoot, Link } from '@chakra-ui/react'
 import React, { useState } from 'react';
-import { Props, retrieveData } from './shared';
+import { Props, retrieveData } from '../shared';
 import NextLink from 'next/link'
 
 export default function Wishlist({ users }: Props) {
@@ -27,7 +27,7 @@ export default function Wishlist({ users }: Props) {
     </Thead>
     <Tbody>
 
-    {users && users.sort(function(a, b){return a.order-b.order}).map((user) => (
+    {users && users.map((user) => (
                              <Tr>
                                 <Td>{user.name}</Td>
                                 <Td>

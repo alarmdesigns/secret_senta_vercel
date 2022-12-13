@@ -1,4 +1,7 @@
-import { Props, retrieveDataById } from '../shared';
+import type {
+  GetServerSidePropsContext
+} from "next";
+import { Props, retrieveDataById } from '../../shared';
 import Router from 'next/router'
 import { ChakraProvider, chakra, Link, shouldForwardProp, Fade, useDisclosure, Collapse, HStack, Flex, Button, Container, Center,Spacer, Stack, Heading, Input, Card, CardBody, Image, Divider, Text, CardFooter , Box} from '@chakra-ui/react';
 import React, { useState } from 'react';
@@ -114,7 +117,7 @@ const ChakraBox = chakra(motion.div, {
           </Flex>
           
           <Collapse in={!wishlistDiv.isOpen} animateOpacity>
-            <Stack spacing={6}>
+            <Stack spacing={2}>
               <Heading as='h3' size='md' noOfLines={3}>
                 Palapag muna ng wishlist :)
               </Heading>
@@ -325,6 +328,6 @@ const ChakraBox = chakra(motion.div, {
 
 export default Post
 
-export async function getServerSideProps({ query }) {
-    return retrieveDataById(query.pid);
+export async function getServerSideProps({ query }: GetServerSidePropsContext) {
+    return retrieveDataById(query);
 }
