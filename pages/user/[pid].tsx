@@ -3,7 +3,7 @@ import type {
 } from "next";
 import { Props, retrieveDataById } from '../../shared';
 import Router from 'next/router'
-import { ChakraProvider, chakra, Link, shouldForwardProp, Fade, useDisclosure, Collapse, HStack, Flex, Button, Container, Center,Spacer, Stack, Heading, Input, Card, CardBody, Image, Divider, Text, CardFooter , Box} from '@chakra-ui/react';
+import { ChakraProvider, chakra, Spinner, Link, shouldForwardProp, Fade, useDisclosure, Collapse, HStack, Flex, Button, Container, Center,Spacer, Stack, Heading, Input, Card, CardBody, Image, Divider, Text, CardFooter , Box} from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { motion, isValidMotionProp } from 'framer-motion';
 import NextLink from 'next/link'
@@ -19,6 +19,8 @@ const Post = ({users}: Props) => {
   const wishlistDiv = useDisclosure();
   const beneficiaryDiv = useDisclosure();
   const resultsButton = useDisclosure();
+  const showSpinner = useDisclosure();
+
 
   const videoLoading = useDisclosure();
   const resultDiv = useDisclosure();
@@ -27,6 +29,8 @@ const Post = ({users}: Props) => {
   const toggleWishListDiv = async () => {
     wishlistDiv.onToggle();
     beneficiaryDiv.onToggle();
+
+    showSpinner.onToggle();
    
     // fetch('/api/save/'+order)
     //   .then((res) => res.json())
@@ -94,7 +98,7 @@ const ChakraBox = chakra(motion.div, {
       <ChakraProvider>
         <Box p='4'>
           
-          <Center h='100vh'>
+          <Center h='70vh'>
         <Stack spacing={6}>
           
           <Flex>
@@ -117,7 +121,7 @@ const ChakraBox = chakra(motion.div, {
           </Flex>
           
           <Collapse in={!wishlistDiv.isOpen} animateOpacity>
-            <Stack spacing={2}>
+            <Stack spacing={4}>
               <Heading as='h3' size='md' noOfLines={3}>
                 Palapag muna ng wishlist :)
               </Heading>
@@ -252,7 +256,7 @@ const ChakraBox = chakra(motion.div, {
     <ChakraProvider>
       <Box p='4'>
         
-        <Center h='100vh'>
+        <Center h='70vh'>
       <Stack spacing={6}>
         
         <Flex>
@@ -277,7 +281,7 @@ const ChakraBox = chakra(motion.div, {
         <Collapse in={!wishlistDiv.isOpen} animateOpacity>
           <Stack spacing={6}>
             <Heading as='h3' size='md' noOfLines={3}>
-              Mag-eedit ulit sya nga wishlist....
+              Mag-eedit ba tayo ng wishlist today?
             </Heading>
             <Input
               placeholder="Something I've been interested with..."
@@ -317,6 +321,15 @@ const ChakraBox = chakra(motion.div, {
 
         </Collapse>
 
+<Center>
+        {showSpinner.isOpen && <Spinner
+          thickness='4px'
+          speed='0.65s'
+          emptyColor='gray.200'
+          color='blue.500'
+          size='xl'
+        />}
+</Center>
 
       </Stack>
       </Center>

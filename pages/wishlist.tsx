@@ -1,4 +1,4 @@
-import { ChakraProvider,TableContainer, Box, Center, Thead, Table, Tr, Th, Td, Tbody, Tfoot, Link } from '@chakra-ui/react'
+import {Heading,  ChakraProvider,TableContainer, Box, Center, Thead, Table, Tr, Th, Td, Tbody, Tfoot, Link } from '@chakra-ui/react'
 import React, { useState } from 'react';
 import { Props, retrieveData } from '../shared';
 import NextLink from 'next/link'
@@ -8,21 +8,21 @@ export default function Wishlist({ users }: Props) {
 
     return (
         <ChakraProvider>
+
             <Box p='4' h='100vh'>
+
+            <Heading mb={4} as='h3' size='xl' noOfLines={2}>
+                    Wishlist
+                   
+                </Heading>
          
                 <Center >
                 <TableContainer>
   <Table size='sm'>
     <Thead>
       <Tr>
-        <Th rowSpan={2}>Contestant</Th>
-        <Th colSpan={3}>Mga hinihiling</Th>
-      </Tr>
-      <Tr>
-
-      <Th>(1)</Th>
-      <Th>(2)</Th>
-      <Th>(3)</Th>
+        <Th >Candidate</Th>
+        <Th >Hinihiling Options</Th>
       </Tr>
     </Thead>
     <Tbody>
@@ -33,15 +33,11 @@ export default function Wishlist({ users }: Props) {
                                 <Td>
                                     
                                         {user.wishlist1}
-
-                                </Td>
-                                <Td>
-                                    
+                                        
+                                        <br/>
                                         {user.wishlist2}
-
-                                </Td>
-                                <Td>
-                                    
+                                        
+                                        <br/>
                                         {user.wishlist3}
 
                                 </Td>
